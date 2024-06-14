@@ -1,24 +1,103 @@
+
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  background-color: #121212; /* Fondo oscuro */
+  color: #f9f9f9; /* Color de texto claro para contraste */
+}
+
+.neon-text {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #fff;
+  animation: neonGlow 1.5s ease-in-out infinite alternate;
+  text-align: center;
+}
+
+@keyframes neonGlow {
+  0%, 100% {
+    text-shadow: 0 0 5px #9D00FF, 0 0 10px #9D00FF, 0 0 20px #9D00FF, 0 0 30px #FF00FF, 0 0 40px #FF00FF, 0 0 50px #FF00FF, 0 0 60px #FF00FF;
+    color: #fff;
   }
-  .ticker-container {
-    overflow: hidden;
-    background-color: #f1f1f1;
-    white-space: nowrap;
+  50% {
+    text-shadow: 0 0 2px #9D00FF, 0 0 5px #9D00FF, 0 0 10px #9D00FF, 0 0 15px #FF00FF;
+    color: #fff;
   }
-  .ticker-wrap {
-    display: flex;
-    animation: ticker 20s linear infinite;
+}
+
+.typewriter-text {
+  font-size: 2rem;
+  color: #f9f9f9;
+  border-right: 2px solid #f9f9f9;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: #f9f9f9; }
+}
+
+.background-image {
+  background-image: url('URL_DE_TU_IMAGEN'); /* Reemplaza con la URL de tu imagen */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Oscurece la imagen */
+  z-index: 1;
+}
+
+.center-container {
+  position: relative;
+  z-index: 2;
+}
+
+.neon-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 10px #9D00FF, 0 0 20px #9D00FF, 0 0 30px #FF00FF, 0 0 40px #FF00FF;
+  animation: borderAnimation 4s linear infinite;
+  z-index: 3;
+  pointer-events: none; /* Para evitar que interfiera con la interacción del usuario */
+}
+
+@keyframes borderAnimation {
+  0% {
+    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
   }
-  .ticker-item {
-    display: inline-block;
-    margin-right: 50px;
+  25% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 100%);
   }
-  @keyframes ticker {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
+  50% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%);
   }
+  75% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 0% 0%, 100% 100%, 0% 100%);
+  }
+}
+.typewriter-container {
+  height: 2.5em; /* Altura fija del contenedor */
+  overflow: hidden; /* Oculta el contenido que desborde */
+  position: relative; /* Posición relativa para el contenido absoluto */
+}
+.typewriter-text {
+  overflow: hidden; /* Oculta el texto que desborde */
+  white-space: nowrap; /* Evita que el texto se divida en líneas */
+  position: absolute; /* Posición absoluta dentro del contenedor */
+  left: 0;
+  width: 100%; /* Ocupa todo el ancho disponible */
+  animation: typewriter 4s steps(30) infinite;
+}
