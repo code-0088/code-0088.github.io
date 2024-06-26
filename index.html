@@ -8,11 +8,39 @@
 <body>
     <h1>API de Lugares</h1>
 
-    <script src="index.js"></script>
+    <div id="places-list"></div>
+
     <script>
-        // Ejemplo de uso de la API
-        console.log(getAllPlaces());
-        console.log(getPlaceById(2));
+        // Funciones y datos de lugares
+        let data = [
+            { id: 1, nombre: "Lugar A", latitud: 40.7128, longitud: -74.0060 },
+            { id: 2, nombre: "Lugar B", latitud: 34.0522, longitud: -118.2437 },
+            { id: 3, nombre: "Lugar C", latitud: 51.5074, longitud: -0.1278 }
+        ];
+
+        function getAllPlaces() {
+            return data;
+        }
+
+        function getPlaceById(id) {
+            return data.find(place => place.id === id);
+        }
+
+        // Cargar datos desde una URL externa (ejemplo)
+        fetch('https://code-0088.github.io/lugares.json')
+            .then(response => response.json())
+            .then(data => {
+                // Mostrar los datos en la página
+                let placesList = document.getElementById('places-list');
+                data.forEach(place => {
+                    let placeElement = document.createElement('p');
+                    placeElement.textContent = `${place.nombre} - Latitud: ${place.latitud}, Longitud: ${place.longitud}`;
+                    placesList.appendChild(placeElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error al cargar los datos:', error);
+            });
     </script>
 </body>
 </html>
